@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Icon from './icon';
 import Temp from './temp';
 import UnitBtn from './unitbtn';
 import CityList from './citylist';
@@ -26,7 +27,8 @@ export default function Main(){
 		return(
 			<div>
 				<div>{weatherData.name}</div>
-				<Temp value={weatherData.main.temp}/>
+				<Icon code={weatherData.weather[0].icon}/>
+				<Temp value={weatherData.main.temp} unit={unit}/>
 				<UnitBtn setUnitFn={setUnit}/>
 				<SunTimes sun={sunData}/>
 				<CityList setCityFn={setCity}/>
