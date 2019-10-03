@@ -1,18 +1,18 @@
 import React from 'react';
 
 export default function CityList({setCityFn}){
-	const list = ["Lisbon", "London", "New York", "Tokyo"]
+	const list = ["Lisbon", "Paris", "Tokyo"]
 
 	function changeCity(e){
 		setCityFn(e.target.value)
 	}
-	
+
 	return(
 		<div>
 		  	<select onChange={changeCity}>
 		  	{
-		  		list.map(city => (
-		  			<option value={city}>{city}</option>		    
+		  		list.map((city, index) => (
+		  			<option key={index} value={city}>{city}</option>		    
 		  		))
 		  	}
 		    
