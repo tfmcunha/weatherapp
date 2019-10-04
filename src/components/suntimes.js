@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/sun.css';
 
 export default function SunTimes({sun}){
 
@@ -11,9 +12,9 @@ export default function SunTimes({sun}){
 	const sunsetM = sunset.getMinutes()
 
 	return(
-		<div>
-			<div>Sunrise: {`${sunriseH}:${sunriseM}`} GMT</div>
-			<div>Sunset: {`${sunsetH}:${sunsetM}`} GMT</div>
+		<div className="sun">
+			<div><b>Sunrise</b>: {`${sunriseH}:${sunriseM}`}</div>
+			<div><b>Sunset</b>: {`${sunsetH}:${sunsetM}`}</div>
 		</div>
 	);
 }

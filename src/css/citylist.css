@@ -1,0 +1,17 @@
+select {
+	background-color: #ff6404;
+	height: 30px;
+	width: 100px;
+	text-align: center;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 10px;
+}
+
+select:focus{
+	outline: none;
+}

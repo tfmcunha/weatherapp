@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/citylist.css';
 
 export default function CityList({setCityFn}){
 	const list = ["Lisbon", "Paris", "Tokyo"]

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Temp({value, unit}){
+export default function Temp({value, unit, condition}){
 	let symbol
 	if (unit === "metric") {
 		symbol = "ºC"
@@ -9,6 +9,10 @@ export default function Temp({value, unit}){
 	}
 
 	return(
-		<div>{Math.floor(value) + symbol}</div>
+		<div>
+			<h1>{Math.floor(value) + symbol}</h1>
+			<h2 style={{marginTop: 0}}>{condition}</h2>
+		</div>
+
 	);
 }

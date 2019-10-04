@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/unitbtn.css';
 
 export default function UnitBtn({setUnitFn}){
 
@@ -9,13 +10,13 @@ export default function UnitBtn({setUnitFn}){
 	}
 
 	return(
-		<div>
-			<div>ºC</div>
+		<div className="unit-toggle">
+			<div className="label">ºC</div>
 			<label className="switch">
 				<input type="checkbox" onChange={changeUnit}/>
 			  	<span className="slider round"></span>
 			</label>
-			<div>ºF</div>
+			<div className="label">ºF</div>
 		</div>
 	);
 }
