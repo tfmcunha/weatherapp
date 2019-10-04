@@ -20,7 +20,7 @@ export default function Main() {
 	useEffect(() => {
 		async function fetchData() {
 			const res = await fetch(
-				`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=2fb43fd8e7a36490a27e057d73996b05`
+				`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_OWAPI}`
 				);
 			if (res.status === 200) {
 				const data = await res.json();
