@@ -12,6 +12,10 @@ select {
 	border-radius: 10px;
 }
 
-select:focus{
+select:focus {
 	outline: none;
+}
+
+option {
+	background-color: #ff9757;
 }

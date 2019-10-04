@@ -1,16 +1,22 @@
+@import url("https://fonts.googleapis.com/css?family=Barriecito|Montserrat&display=swap");
+
 .App {
-  text-align: center;
-  width: 100vw;
+	text-align: center;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	font-family: "Montserrat", sans-serif;
 }
 
 .main {
-  width: 25vw;  
-  margin:auto;
-  display: flex;
-  flex-direction: column;
-  
+	width: 300px;
+	padding: 20px;
+	margin: 20px;
+	box-shadow: 2px 2px 40px 1px lightgrey;
+	border-radius: 40px 0 40px 0;
 }
 
 .title {
+	font-family: "Barriecito", cursive;
 	color: #ff6404;
 }

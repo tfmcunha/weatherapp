@@ -1,41 +1,64 @@
-import React, {useEffect, useState} from 'react';
-import Icon from './icon';
-import Temp from './temp';
-import UnitBtn from './unitbtn';
-import CityList from './citylist';
-import SunTimes from './suntimes';
+import React, { useEffect, useState } from "react";
+import Icon from "./icon";
+import Temp from "./temp";
+import UnitBtn from "./unitbtn";
+import CityList from "./citylist";
+import SunTimes from "./suntimes";
 
-export default function Main(){
-
-	const [weatherData, setWeatherData] = useState({})
-	const [unit, setUnit] = useState("metric")
-	const [city, setCity] = useState("lisbon")
-	const [sunData, setSunData] = useState({})
+export default function Main() {
+	const [loaded, setLoaded] = useState(false);
+	const [weatherData, setWeatherData] = useState({
+		temp: "",
+		condition: "",
+		icon: "",
+		sunrise: null,
+		sunset: null
+	});
+	const [unit, setUnit] = useState("metric");
+	const [city, setCity] = useState("lisbon");
 
 	useEffect(() => {
-		async function fetchData(){
-			const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=2fb43fd8e7a36490a27e057d73996b05`)
-			const data = await res.json()
-			setWeatherData(data)
-			setSunData({sunrise: data.sys.sunrise+data.timezone-3600, sunset: data.sys.sunset+data.timezone-3600})
-			console.log(data)
+		async function fetchData() {
+			const res = await fetch(
+				`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=2fb43fd8e7a36490a27e057d73996b05`
+				);
+			if (res.status === 200) {
+				const data = await res.json();
+				setWeatherData(previousData => ({
+					...previousData,
+					temp: data.main.temp,
+					condition: data.weather[0].main,
+					icon: data.weather[0].icon,
+					sunrise: data.sys.sunrise + data.timezone - 3600,
+					sunset: data.sys.sunset + data.timezone - 3600
+				}));
+				setLoaded(true);
+			} else {
+				console.log(res.status);
+			}
 		}
-		fetchData()
-	}, [unit, city])
+		fetchData();
+	}, [city]);
 
-	if (weatherData.weather) {
-		return(
+
+	const {icon, temp, condition, sunrise, sunset} = weatherData
+
+	if (loaded) {
+		return (
 			<div className="main">
-				<h1 className="title">WEATHER APP</h1>				
-				<Icon code={weatherData.weather[0].icon}/>
-				<Temp value={weatherData.main.temp} unit={unit} condition={weatherData.weather[0].main}/>
-				<UnitBtn setUnitFn={setUnit}/>
-				<SunTimes sun={sunData}/>
-				<CityList setCityFn={setCity}/>
-
+				<h1 className="title">WEATHER APP</h1>
+				<CityList setCityFn={setCity} />
+				<Icon code={icon} />
+				<Temp
+					value={temp}
+					unit={unit}
+					condition={condition}
+				/>
+				<UnitBtn setUnitFn={setUnit} />
+				<SunTimes sun={{sunrise, sunset }}/>
 			</div>
-		)
+			);
 	} else {
-		return(<div>Loading</div>)
+		return <div>Loading...</div>;
 	}
 }

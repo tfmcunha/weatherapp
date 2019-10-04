@@ -1,18 +1,19 @@
-import React from 'react';
+import React from "react";
 
-export default function Temp({value, unit, condition}){
-	let symbol
-	if (unit === "metric") {
-		symbol = "ºC"
-	} else if (unit === "imperial") {
-		symbol = "ºF"
+export default function Temp({ value, unit, condition }) {
+
+	function convertUnit(){
+		if(unit ==="metric") {
+			return Math.floor(value - 273.15).toString() + "ºC"        
+		} else if (unit === "imperial") {        
+			return Math.floor(value * (9/5) - 459.69).toString() + "ºF"        
+		}
 	}
 
-	return(
+	return (
 		<div>
-			<h1>{Math.floor(value) + symbol}</h1>
-			<h2 style={{marginTop: 0}}>{condition}</h2>
+			<h2>{condition}</h2>
+			<h1 style={{ marginTop: 0 }}>{convertUnit()}</h1>
 		</div>
-
 	);
 }
